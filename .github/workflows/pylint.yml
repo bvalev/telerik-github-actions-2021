@@ -1,8 +1,15 @@
 name: deployment-of-python-app
-on: [push]
+on:
+  pull_request:
+    paths:
+      - '**.py'
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: Deploy python app
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - run: echo "This has been triggered ${{ github.event_name }} event."
       - run: echo "This job is running on ${{ runner.os }} server hosted on github."
