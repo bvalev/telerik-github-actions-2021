@@ -16,5 +16,6 @@ def sum_factorial():
     print("Final SUM = {}".format(result))
     return result
 
+
 if __name__ == "__main__":
     sum_factorial()
