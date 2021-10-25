@@ -20,10 +20,13 @@ jobs:
           python-version: 3.9
       - run: |
           pip install pylint
-          
+          pip install pycodestyle
       - name: Lint with pylint
         run: |
           python lint_test.py
+      - name: Style with pycodestyle
+        run: |
+          pycodestyle *.py
       - name: Build container
         run: |
           echo "Building a container image..."
