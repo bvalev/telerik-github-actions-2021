@@ -21,15 +21,15 @@ jobs:
       - run: |
           pip install pylint
           pip install pycodestyle
+      - name: Unit testing
+        run: |
+          python3 -m doctest factorial.py
       - name: Lint with pylint
         run: |
           python lint_test.py
       - name: Style with pycodestyle
         run: |
           pycodestyle *.py
-      - name: Unit testing
-        run: |
-          python3 -m doctest factorial.py
       - name: Build container
         run: |
           echo "Building a container image..."
