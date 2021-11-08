@@ -87,6 +87,22 @@ jobs:
         run: |
           python3 -m doctest factorial.py
 
+  database-integration:
+    needs: unit-test
+    runs-on: ubuntu-latest
+    container: node:10.18-jessie
+    services:
+      postgres:
+        image: postgres
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Connect to PostgreSQL
+        run: python --version
+        env:
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: 5432
+
   sonarcloud:
     needs: unit-test
     runs-on: ubuntu-latest
@@ -102,7 +118,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
 
   deploy:
-    needs: sonarcloud
+    needs: [database-integration, sonarcloud]
     runs-on: ubuntu-latest
     steps:
       - run: echo "Deploy to production"
