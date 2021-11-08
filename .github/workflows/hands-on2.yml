@@ -1,9 +1,7 @@
 name: Pipelines Hands-On
 env:
   WORKSPACE_ENVIRONMENT_VARIABLE: 'custom workspace environment variable'
-on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+on: push
 jobs:
   pre-build:
     env:
@@ -117,3 +115,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
+
+  deploy:
+    needs: [database-integration, sonarcloud]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploy to production"
