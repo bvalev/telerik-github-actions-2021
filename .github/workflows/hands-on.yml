@@ -88,6 +88,7 @@ jobs:
           python3 -m doctest factorial.py
 
   sonarcloud:
+    needs: unit-test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -101,7 +102,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
 
   deploy:
-    needs: unit-test
+    needs: sonarcloud
     runs-on: ubuntu-latest
     steps:
       - run: echo "Deploy to production"
