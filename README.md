@@ -1,7 +1,3 @@
-# telerik-github-actions-2021
-A repository created for practicing Github Actions  
-Feel free to fork this repository and work in the forked version.
+## Practice Repository
 
-Credits to Tom Reid for the Python Code
-
-Test change.
+#### Bogomil Valev <img src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg" alt="drawing" width="16px"/>
